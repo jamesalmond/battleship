@@ -1,9 +1,9 @@
 require 'base'
-class James1Player
+class James2Player
   include Player::Base
 
   def name
-    "James Player 1"
+    "James Player 2"
   end
 
   def make_choice(state, ships_remaining)
@@ -15,3 +15,4 @@ class James1Player
   end
 
 end
+
