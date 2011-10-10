@@ -7,11 +7,7 @@ class James1Player
   end
 
   def make_choice(state, ships_remaining)
-    choice = [rand(10), rand(10)]
-    while turns_placed.include?(choice)
-      choice = [rand(10), rand(10)]
-    end
-    choice
+    random_choice
   end
 
 end
