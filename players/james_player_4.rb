@@ -1,5 +1,5 @@
 require 'base'
-class James3Player
+class James4Player
   include Player::Base
 
   def name

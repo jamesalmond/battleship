@@ -7,7 +7,7 @@ require "digest/sha1"
 require "forwardable"
 require "drb"
 
-DELAY = 0.1
+DELAY = 0.01
 PORT = 4432
 
 class PlayerClient
