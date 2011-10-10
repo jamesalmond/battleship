@@ -4,6 +4,7 @@ module Player
 
     def initialize
       @turns_placed = []
+      @hits = []
     end
     def new_game
       game = RandomGenerator.new.generate
@@ -11,6 +12,7 @@ module Player
     end
 
     def take_turn(state, ships_remaining)
+      @hits << last_turn if last_turn_was_hit?(state)
       choice = make_choice(state, ships_remaining)
       turns_placed << choice
       choice
@@ -34,6 +36,11 @@ module Player
 
     def last_turn
       turns_placed[-1]
+    end
+
+    def last_turn_was_hit?(state)
+      return false unless last_turn
+      state[last_turn[1]][last_turn[0]] == :hit
     end
 
     def cells_surrounding(cell)
