@@ -11,16 +11,15 @@ module Player
       end
       def cells
         if orientation == :across
-          (x..(9-length)).map{|x2|[x2, y]}
+          (x..(x+length-1)).map{|x2|[x2, y]}
         else
-          (y..(9-length)).map{|y2|[x, y2]}
+          (y..(y+length-1)).map{|y2|[x, y2]}
         end
       end
     end
 
     def initialize
       @ships = [5,4,3,3,2].map{|s|Ship.new(s)}
-      @cells = []
       @placements = []
     end
 
