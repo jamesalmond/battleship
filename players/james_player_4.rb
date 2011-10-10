@@ -1,5 +1,5 @@
 require 'base'
-class James4Player
+class James3Player
   include Player::Base
 
   def name
@@ -7,13 +7,8 @@ class James4Player
   end
 
   def make_choice(state, ships_remaining)
-    last_turn_was_hit?(state) ? place_around_hit(last_turn, state) : random_choice
+    hit = hits.find{|h| !unknown_cells_surrounding(h, state).empty?}
+    hit ?  place_around_hit(hit, state) : random_choice
   end
-
-  def place_around_hit(hit, state)
-    new_hit = unknown_cells_surrounding(hit, state).sample
-    new_hit ? new_hit : random_choice
-  end
-
 end
 

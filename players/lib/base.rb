@@ -12,10 +12,19 @@ module Player
     end
 
     def take_turn(state, ships_remaining)
-      @hits << last_turn if last_turn_was_hit?(state)
+      @hits = []
+      state.each_with_index do |row, y|
+        row.each_with_index do |value, x|
+          @hits << [x,y] if value == :hit
+        end
+      end
       choice = make_choice(state, ships_remaining)
       turns_placed << choice
       choice
+    end
+
+    def hits
+      @hits
     end
 
     def random_choice
@@ -54,6 +63,11 @@ module Player
 
     def unknown_cells_surrounding(cell, state)
       cells_surrounding(cell).select{|surrounding| state[surrounding[1]][surrounding[0]] == :unknown}
+    end
+
+    def place_around_hit(hit, state)
+      new_hit = unknown_cells_surrounding(hit, state).sample
+      new_hit ? new_hit : random_choice
     end
 
   end
