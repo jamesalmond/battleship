@@ -12,12 +12,7 @@ module Player
     end
 
     def take_turn(state, ships_remaining)
-      @hits = []
-      state.each_with_index do |row, y|
-        row.each_with_index do |value, x|
-          @hits << [x,y] if value == :hit
-        end
-      end
+      @hits << last_turn if last_turn_was_hit?(state)
       choice = make_choice(state, ships_remaining)
       turns_placed << choice
       choice
